@@ -1,7 +1,7 @@
 @ChartComponent = (chartType) ->
 
   React.createClass
-    displayName: chartType + 'Chart'
+    displayName: "#{chartType}Chart"
 
     getInitialState: ->
       chartInstance: null
@@ -14,9 +14,8 @@
     componentDidMount: ->
       @initializeChart()
 
-    componentDidUpdate:  ->
-      @state.chartInstance.destroy()
-      @initializeChart()
+    componentWillUnmount: ->
+      @state.chartInstance.destroy() if @state.chartInstance
 
     initializeChart: ->
       canvas = React.findDOMNode(@refs[@props.name])
