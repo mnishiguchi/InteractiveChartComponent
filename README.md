@@ -26,7 +26,7 @@ Please install these libraries in your environment before starting to use Intera
 
 ##Usage
 
-1. Add `InteractiveChartComponent.js` or cut & paste its content to your project.
+1. Add `InteractiveChartComponent.js.coffee` or cut & paste its content to your project.
 
 2. Use [`ChartComponent(String chartType)`](https://github.com/mnishiguchi/InteractiveChartComponent/blob/master/InteractiveChartComponent.js.coffee) method to generate a component class for the specified type of Chart.js chart/graph. Pass in as an argument a string of chart type, such as `"Bar"`, `"Pie"`, `"PolarArea"`, etc. For example, if a string "Bar" is passed in, a component class for Bar chart will be created. Please refer to the Chart.js [documentation](http://www.chartjs.org/docs/) for the available chart types.
 
