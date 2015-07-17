@@ -2,31 +2,35 @@
 
 [日本語](http://qiita.com/mnishiguchi/items/aeb6231b405051aba85c)
 
-InteractiveChartComponent is a convenient helper method to generate a React.js component of verious types of interactive Chart.js charts/graphs. 
+**InteractiveChartComponent** is a convenient helper method to generate a React.js component of verious types of interactive Chart.js charts/graphs. 
 
 I wrote this because I wanted to keep the graphs updated in an application like the screenshot below, where users can add and update displayed data.
 
+----
+
 ![Screenshot 2015-07-14 16.25.07.png](https://qiita-image-store.s3.amazonaws.com/0/82804/02afbf45-52ce-476f-b304-7d1862f6d2ea.png)
+
+----
 
 ##Dependencies
 Please install these libraries in your environment before starting to use InteractiveChartComponent. I am not a native JS speaker; I wrote this in CoffeeScript. Feel free to modify it the way it is convenient to you.
-- React.js
-- Chart.js
-- CoffeeScript
+- [React.js](https://facebook.github.io/react/)
+- [Chart.js](http://www.chartjs.org/)
+- [CoffeeScript](http://coffeescript.org/)
 
 ##Advantages
 
 - You can draw Chart.js-powered interactive charts/graphs at ease.
 - Every time new data is provided to a chart component from its parent node, the chart is automatically updated, which makes the UI interactive.
-- Once you include the `InteractiveChartComponent`, you can generate classes for various types of charts/graphs with a few lines of codes + data, which keeps your code dry.
+- Once you add the **InteractiveChartComponent** to your project, you can generate classes for various types of charts/graphs with *a few lines of codes + data*, which keeps your code dry.
 
 ##Usage
 
 1. Add `InteractiveChartComponent.js` or cut & paste its content to your project.
 
-2. Use `ChartComponent(String chartType)` method to generate a component class for the specified type of Chart.js chart/graph. Pass in as an argument a string of chart type, such as `"Bar"`, `"Pie"`, `"PolarArea"`, etc. For example, if a string "Bar" is passed in, a component class for Bar chart will be created. Please refer to the Chart.js [documentation](http://www.chartjs.org/docs/) for the available chart types.
+2. Use [`ChartComponent(String chartType)`](https://github.com/mnishiguchi/InteractiveChartComponent/blob/master/InteractiveChartComponent.js.coffee) method to generate a component class for the specified type of Chart.js chart/graph. Pass in as an argument a string of chart type, such as `"Bar"`, `"Pie"`, `"PolarArea"`, etc. For example, if a string "Bar" is passed in, a component class for Bar chart will be created. Please refer to the Chart.js [documentation](http://www.chartjs.org/docs/) for the available chart types.
 
-3. Instantiate the chart class by using [`React.createElement`](https://facebook.github.io/react/docs/top-level-api.html#react.createelement) in `render` method of its parent component, passing in 4 required properties and options in necessary.
+3. Instantiate the chart class by using [`React.createElement`](https://facebook.github.io/react/docs/top-level-api.html#react.createelement) in [`render`](https://facebook.github.io/react/docs/component-specs.html#render) method of its parent component, passing in four required properties and options if necessary.
 
 >The required properties
 >+ `name`:   Must be a unique string. Used for finding a canvas later on.
@@ -34,17 +38,20 @@ Please install these libraries in your environment before starting to use Intera
 >+ `height`: the height of the canvas
 >+ `width`:  the width of the canvas
 
+>The optional property
+>+ `options`: Chart options
+
 ```coffeescript
 
 # With "Bar" passed in, a component class of Bar Chart will be generated.
-React.createElement CustomChart("Bar"),
+React.createElement ChartComponent("Bar"),
   name: "barChart"         # Unique string
   data: @dataForBarChart() # The data structure required by the chart type you use.
   height: 200
   width:  400
 
 # With "Pie" passed in, a component class of Pie Chart will be generated.
-React.createElement CustomChart("Pie"),          
+React.createElement ChartComponent("Pie"),          
   name: "pieChart"
   data: @dataForPieChart()           
   height: 200            
@@ -82,7 +89,7 @@ datasets: [
 You can also configure your chart by passing in the `options`. Just like the data structure, each chart type has a different set of configuration items. Please refer to the Chart.js [documentation](http://www.chartjs.org/docs/) for the configurable items for your chart.
 
 ```coffeescript
-React.createElement CustomChart("Bar"),
+React.createElement ChartComponent("Bar"),
   name: "barChart"
   data: @dataForBarChart()
   height: 200
@@ -105,6 +112,7 @@ React.createElement CustomChart("Bar"),
 
 Please refer to the Chart.js [documentation](http://www.chartjs.org/docs/#getting-started-global-chart-configuration) for available configuration items.
 ```coffee
+# e.g.
 Chart.defaults.global.responsive = true;
 ```
 
