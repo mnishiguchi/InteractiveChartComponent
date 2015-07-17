@@ -1,3 +1,5 @@
+# If you hardcode the data within the component.
+
 @LineChartApp = React.createClass
 
   getInitialState: ->
