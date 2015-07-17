@@ -2,9 +2,6 @@
 
 @LineChartApp = React.createClass
 
-  getInitialState: ->
-    records: @props.data
-
   render: ->
     React.createElement ChartComponent("Line"),
       name:   "lineChart"
