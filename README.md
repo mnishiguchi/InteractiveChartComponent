@@ -9,13 +9,14 @@ I wrote this because I wanted to keep the graphs updated in an application like 
 ![Screenshot 2015-07-14 16.25.07.png](https://qiita-image-store.s3.amazonaws.com/0/82804/02afbf45-52ce-476f-b304-7d1862f6d2ea.png)
 
 ##Dependencies
-
+Please install these libraries in your environment before starting to use InteractiveChartComponent. I am not a native JS speaker; I wrote this in CoffeeScript. Feel free to modify it the way it is convenient to you.
 - React.js
 - Chart.js
+- CoffeeScript
 
 ##Advantages
 
-- You can user Chart.js-powered interactive charts/graphs at ease.
+- You can draw Chart.js-powered interactive charts/graphs at ease.
 - Every time new data is provided to a chart component from its parent node, the chart is automatically updated, which makes the UI interactive.
 - Once you include the `InteractiveChartComponent`, you can generate classes for various types of charts/graphs with a few lines of codes + data, which keeps your code dry.
 
@@ -50,10 +51,9 @@ React.createElement CustomChart("Pie"),
   width:  200
 ```
 
-
-Note: Each Chart.js chart type require different data structure.
+##Data structures
+Each Chart.js chart type require different data structure.
 For example, if you use `"Bar"`, its data structure is as following. Please refer to the Chart.js [documentation](http://www.chartjs.org/docs/) for the required data structure for your chart.
-
 
 ```coffeescript
 # e.g. Data structure for Bar chart
@@ -78,6 +78,7 @@ datasets: [
 ]
 ```
 
+## Chart options
 You can also configure your chart by passing in the `options`. Just like the data structure, each chart type has a different set of configuration items. Please refer to the Chart.js [documentation](http://www.chartjs.org/docs/) for the configurable items for your chart.
 
 ```coffeescript
@@ -98,5 +99,12 @@ React.createElement CustomChart("Bar"),
     barValueSpacing:          5
     barDatasetSpacing:        1
   }
+```
+
+## Global chart configuration
+
+Please refer to the Chart.js [documentation](http://www.chartjs.org/docs/#getting-started-global-chart-configuration) for available configuration items.
+```coffee
+Chart.defaults.global.responsive = true;
 ```
 
