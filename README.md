@@ -116,3 +116,25 @@ Please refer to the Chart.js [documentation](http://www.chartjs.org/docs/#gettin
 Chart.defaults.global.responsive = true;
 ```
 
+## Rails with HAML
+
+```haml
+
+:coffee
+  window.BarChartComponent = new Components.ChartComponent("Bar")
+  window.PieChartComponent = new Components.ChartComponent("Pie")
+
+.panel.panel-blue
+  .panel-heading
+    /...
+  - if @total_volume > 0
+    .panel-body
+      .row.text-center
+        .col-sm-6
+          = react_component 'BarChartComponent', { name: "MovingBarChart",
+            data: @dataForBarChart, height: 200, width:  400 }
+        .col-sm-6
+          = react_component 'PieChartComponent', { name: "MovingPieieChart",
+            data: @dataForPieChart, height: 200, width:  200 }
+```
+

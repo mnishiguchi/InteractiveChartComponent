@@ -1,31 +1,38 @@
-@ChartComponent = (chartType) ->
+# Chart.js configuration
+Chart.defaults.global.tooltipEvents = ["mousemove", "touchstart", "touchmove"]
+Chart.defaults.global.scaleLabel    = "<%=value%>cu.ft"
 
-  React.createClass
-    displayName: "#{chartType}Chart"
+class @Components.ChartComponent
+  constructor: (chartType)->
+    return @createClass(chartType)
 
-    propTypes:
-      name:    React.PropTypes.string
-      data:    React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.object])
-      height:  React.PropTypes.number
-      width:   React.PropTypes.number
-      options: React.PropTypes.object
+  createClass: (chartType) ->
 
-    getInitialState: ->
-      chartInstance: null
+    React.createClass
+      displayName: "#{chartType}Chart"
+      propTypes:
+        name:    React.PropTypes.string
+        data:    React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.object])
+        height:  React.PropTypes.number
+        width:   React.PropTypes.number
+        options: React.PropTypes.object
 
-    render: ->
-      React.DOM.canvas
-        ref:   @props.name
-        style: { height: @props.height, width: @props.width }
+      getInitialState: ->
+        chartInstance: null
 
-    componentDidMount: ->
-      @initializeChart()
+      render: ->
+        React.DOM.canvas
+          ref:   @props.name
+          style: { height: @props.height, width: @props.width }
 
-    componentWillUnmount: ->
-      @state.chartInstance.destroy() if @state.chartInstance
+      componentDidMount: ->
+        @initializeChart()
 
-    initializeChart: ->
-      canvas = React.findDOMNode(@refs[@props.name])
-      ctx    = canvas.getContext("2d")
-      chart  = new Chart(ctx)[chartType](@props.data)
-      @setState.chartInstance = chart
+      componentWillUnmount: ->
+        @state.chartInstance.destroy() if @state.chartInstance
+
+      initializeChart: ->
+        canvas = React.findDOMNode(@refs[@props.name])
+        ctx    = canvas.getContext("2d")
+        chart  = new Chart(ctx)[chartType](@props.data)
+        @setState.chartInstance = chart
