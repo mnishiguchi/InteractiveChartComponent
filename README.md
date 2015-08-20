@@ -7,12 +7,10 @@
 I wrote this because I wanted to keep the graphs updated in an application like the screenshot below, where users can add and update displayed data.
 
 ----
-
-![Screenshot 2015-07-14 16.25.07.png](https://qiita-image-store.s3.amazonaws.com/0/82804/02afbf45-52ce-476f-b304-7d1862f6d2ea.png)
-
+![](./Screenshot.png)
 ----
 
-##Dependencies
+##Requirements
 Please install these libraries in your environment before starting to use InteractiveChartComponent. I am not a native JS speaker; I wrote this in CoffeeScript. Feel free to modify it the way it is convenient to you.
 - [React.js](https://facebook.github.io/react/)
 - [Chart.js](http://www.chartjs.org/)
@@ -116,7 +114,7 @@ Please refer to the Chart.js [documentation](http://www.chartjs.org/docs/#gettin
 Chart.defaults.global.responsive = true;
 ```
 
-## Rails with HAML
+## Rails, HAML and react-rails 
 
 ```haml
 
